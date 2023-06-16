@@ -1,4 +1,4 @@
-# PocketFlow: an autoregressive flow model incorporated with chemical acknowledge for generating drug-like molecules inside protein pockets
+# PocketFlow: an autoregressive flow model incorporated with chemical knowledge for generating drug-like molecules inside protein pockets
 
 Requirements:
 * Python 3.8
