@@ -159,7 +159,8 @@ class Generate(object):
                 new_pos_to_add = new_pos_to_add_[pos_choose_idx]
                 return new_pos_to_add
             else:
-                return False
+                new_pos_to_add = new_abs_pos[torch.argmax(dist).view(-1)]
+                return new_pos_to_add
 
     def bond_generate(self, h_cpx, data, new_pos_to_add, atom_type_emb, atom_idx, rw_mol):
         if atom_idx == 0:
