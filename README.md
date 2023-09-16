@@ -1,4 +1,6 @@
-# PocketFlow: an autoregressive flow model incorporated with chemical knowledge for generating drug-like molecules inside protein pockets
+# A data-and-knowledge driven structure-based molecular generative framework
+
+Deep learning-based molecular generation has extensive applications in many fields, particularly drug discovery. However, majority of current deep generative models (DGMs) are ligand-based and do not consider chemical knowledge in molecular generation process, resulting in a low success rate. We herein propose a new structure-based molecular generative framework with chemical knowledge explicitly considered (named PocketFlow), which generates novel ligand molecules inside protein binding pockets. In various dry-lab evaluations, PocketFlow showed a state-of-the-art performance with generated molecules being 100% chemically valid and highly drug-like. Ablation experiments prove a critical role of chemical knowledge in ensuring the validity and drug-likeness of the generated molecules. We applied PocketFlow to two new target proteins, HAT1 and YTHDC1, which are difficult to target, and successfully obtained wet-lab validated bioactive lead compounds. The binding modes of active lead compounds with target proteins were confirmed by molecular docking, and further by the X-ray crystal structure. Overall, PocketFlow is the first dry- and wet-lab verified deep molecular generator with constraints of pocket topology and chemical knowledge, representing a landmark progress in structure-based DGMs.
 
 Requirements:
 * Python 3.8
