@@ -370,13 +370,8 @@ class Generate(object):
                 with open(out_dir+'generated.sdf', 'a') as sdf_writer:
                     mol_block = Chem.MolToMolBlock(mol)
                     sdf_writer.write(mol_block + '\n$$$$\n')
-                with open(out_dir+'generated_NoModify.sdf', 'a') as sdf_writer1:
-                    mol_block_NoModify = Chem.MolToMolBlock(mol_NoModify)
-                    sdf_writer1.write(mol_block_NoModify + '\n$$$$\n')
                 with open(out_dir+'generated.smi','a') as smi_writer:
                     smi_writer.write(smi+'\n')
-                with open(out_dir+'generated_NoModify.smi','a') as smi_writer1:
-                    smi_writer1.write(smi_NoModify+'\n')
                 smiles_list.append(smi)
                 valid_mol.append(mol)
                 valid_conuter += 1
