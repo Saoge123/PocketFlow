@@ -245,9 +245,9 @@ PATTERNS = [
         Chem.MolFromSmarts('[C]1~&@[C]~&@[C]~&@[C]~&@[C]~&@[C]~&@1')
     ]
 PATTERNS_1 = [
-        [Chem.MolFromSmarts('[#6,7,8]-[#7]1~&@[#6,7]~&@[#6,7]~&@[#6,7]~&@[#6,7]~&@[#6,7]~&@1'),
+        [Chem.MolFromSmarts('[#6,#7,#8]-[#7]1~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@1'),
         Chem.MolFromSmarts('[C,N,O]-[N]1~&@[C,N]~&@[C,N]~&@[C,N]~&@[C,N]~&@[C,N]~&@1')],
-        [Chem.MolFromSmarts('[#6,7,8]-[#6]1(-[#6,7,8])~&@[#6,7]~&@[#6,7]~&@[#6,7]~&@[#6,7]~&@[#6,7]~&@1'),
+        [Chem.MolFromSmarts('[#6,#7,#8]-[#6]1(-[#6,#7,#8])~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@1'),
         Chem.MolFromSmarts('[C,N,O]-[C]1(-[C,N,O])~&@[C,N]~&@[C,N]~&@[C,N]~&@[C,N]~&@[C,N]~&@1')]
         #Chem.MolFromSmarts('[C,N,O]-[N]1~&@[C]~&@[C]~&@[N]~&@[C]~&@[C]-1'),
         #Chem.MolFromSmarts('[C,N,O]-[N]1~&@[C]~&@[C]~&@[C]~&@[C]~&@[C]-1'),
@@ -258,7 +258,7 @@ def modify(mol, max_double_in_6ring=0):
     mol_copy = copy.deepcopy(mol)
     mw = Chem.RWMol(mol)
 
-    p1 = Chem.MolFromSmarts('[#6,7]=[#6]1-[#6,7]~&@[#6,7]~&@[#6,7]~&@[#6,7]~&@[#6,7]-1')
+    p1 = Chem.MolFromSmarts('[#6,#7]=[#6]1-[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]-1')
     p1_ = Chem.MolFromSmarts('[C,N]=[C]1-[C,N]~&@[C,N]~&@[C,N]~&@[C,N]~&@[C,N]-1')
     subs = set(list(mw.GetSubstructMatches(p1)) + list(mw.GetSubstructMatches(p1_)))
     subs_set_1 = [set(s) for s in subs]
@@ -309,7 +309,7 @@ def modify(mol, max_double_in_6ring=0):
                     mw.AddBond(*b[0], Chem.rdchem.BondType.SINGLE)
 
     Chem.GetSSSR(mw)
-    p3 = Chem.MolFromSmarts('[#8]=[#6]1-[#6,7]~&@[#6,7]~&@[#6,7]~&@[#6,7]~&@[#6,7]-1')
+    p3 = Chem.MolFromSmarts('[#8]=[#6]1-[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]-1')
     p3_ = Chem.MolFromSmarts('[O]=[C]1-[C,N]~&@[C,N]~&@[C,N]~&@[C,N]~&@[C,N]-1')
     subs = set(list(mw.GetSubstructMatches(p3)) + list(mw.GetSubstructMatches(p3_)))
     subs_set_2 = [set(s) for s in subs]
@@ -321,7 +321,7 @@ def modify(mol, max_double_in_6ring=0):
                 mw.RemoveBond(*b[0])
                 mw.AddBond(*b[0], Chem.rdchem.BondType.SINGLE)
 
-    p = Chem.MolFromSmarts('[#6,7]1~&@[#6,7]~&@[#6,7]~&@[#6,7]~&@[#6,7]~&@[#6,7]~&@1')
+    p = Chem.MolFromSmarts('[#6,#7]1~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@[#6,#7]~&@1')
     p_ = Chem.MolFromSmarts('[C,N]1~&@[C,N]~&@[C,N]~&@[C,N]~&@[C,N]~&@[C,N]~&@1')
     Chem.GetSSSR(mw)
     subs = set(list(mw.GetSubstructMatches(p)) + list(mw.GetSubstructMatches(p_)))
