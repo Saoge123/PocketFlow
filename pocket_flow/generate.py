@@ -357,14 +357,12 @@ class Generate(object):
             data_clone = data.clone().detach()
             out = self.run(data_clone)
             if out:
-                mol, mol_NoModify = out
+                mol, _ = out
             del data_clone
             if mol is not None:
                 #print(len(mol.GetAtoms()))
                 mol.SetProp('_Name', 'No_%s-%s'%(valid_conuter, out_dir))
-                mol_NoModify.SetProp('_Name', 'No_%s-%s' %(valid_conuter, out_dir))
                 smi = Chem.MolToSmiles(mol)
-                smi_NoModify = Chem.MolToSmiles(mol_NoModify)
                 if with_print:
                     print(smi)
                 with open(out_dir+'generated.sdf', 'a') as sdf_writer:
