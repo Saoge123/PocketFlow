@@ -241,32 +241,3 @@ class CrossDocked2020(object):
         np.save(lmdb_path.split('.')[0]+'_Keys', data_ix_list)
         with open(lmdb_path.split('.')[0]+'_invalid.list','w') as fw:
             fw.write(str(exception_list))
-
-
-class PDBBind2020(CrossDocked2020):
-    def __init__(self, raw_file_list, unexpected_sample=[], atomic_numbers=[6,7,8,9,15,16,17,35,53]):
-        self.index = self.get_file(raw_file_list)
-        self.unexpected_sample = unexpected_sample
-        self.file_dirname = os.path.split(os.path.split(self.index[0][0])[0])
-        self.atomic_numbers = set(atomic_numbers)
-
-    @staticmethod
-    def get_file(raw_file_list):
-        file_list = []
-        for i in raw_file_list:
-            sdf = glob.glob(i + '/*.sdf')
-            pdb = glob.glob(i + '/*pocket.pdb')
-            if pdb and sdf:
-                file_list.append([pdb[0], sdf[0]])
-        return file_list
-
-
-'''
-refine_set_dir_list = glob.glob('./data/PDBBind2020/refined-set/*/')
-other_pl_dir_list = glob.glob('./data/PDBBind2020/v2020-other-PL/*/')
-
-raw_file_list = refine_set_dir_list + other_pl_dir_list
-pdbbind_2020 = PDBBind2020(raw_file_list, atomic_numbers=[6,7,8,9,15,16,17,35,53])
-pdbbind_2020.run(dataset_name='PDBBind_2020.lmdb', max_ligand_atom=35,
-            n_process=6, interval=2000, only_backbone=False, lmdb_path=None)
-'''
