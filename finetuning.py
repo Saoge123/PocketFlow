@@ -34,7 +34,7 @@ dataset[0]
 device = 'cuda:0'
 ckpt = torch.load('../path/to/pretrained/ckpt.pt', map_location=device)
 config = ckpt['config']
-model = PocketFlowWithEdgeNew(config).to(device)
+model = PocketFlow(config).to(device)
 model.load_state_dict(ckpt['model'])
 print(model.get_parameter_number())
 keys = ['edge_flow.flow_layers.5', 'atom_flow.flow_layers.5', 
