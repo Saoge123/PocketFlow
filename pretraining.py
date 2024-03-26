@@ -1,5 +1,5 @@
 import torch
-from pocket_flow.gdbp_model import PocketFlow, PocketFlowWithEdgeNew
+from pocket_flow.gdbp_model import PocketFlow
 from pocket_flow.utils import Experiment, LoadDataset
 from pocket_flow.utils.transform import *
 from pocket_flow.utils.data import ComplexData, torchify_dict
@@ -60,7 +60,7 @@ dataset = LoadDataset('pretrain_data/ZINC_PretrainingDataset.lmdb', transform=tr
 print('Num data:', len(dataset))
 train_set, valid_set = LoadDataset.split(dataset, val_num=10000, shuffle=True, random_seed=0)
 
-model = PocketFlowWithEdgeNew(config).to('cuda:0')
+model = PocketFlow(config).to('cuda:0')
 print(model.get_parameter_number())
 optimizer = torch.optim.Adam(model.parameters(), lr=2.e-4, weight_decay=0, betas=(0.99, 0.999))
 scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, factor=0.6, patience=10, min_lr=1.e-5)
