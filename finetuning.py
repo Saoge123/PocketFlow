@@ -1,5 +1,5 @@
 import torch
-from pocket_flow.gdbp_model import PocketFlowWithEdgeNew, reset_parameters, freeze_parameters
+from pocket_flow.gdbp_model import PocketFlow, reset_parameters, freeze_parameters
 from pocket_flow.utils import Experiment, LoadDataset
 from pocket_flow.utils.transform import *
 #from utils.ParseFile import Protein, parse_sdf_to_dict
