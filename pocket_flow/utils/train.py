@@ -189,7 +189,7 @@ class Experiment(object):
         self.train_loader = inf_iterator(DataLoader(
                 self.train_set, 
                 batch_size = train_batch_size, #config.train.batch_size, 
-                shuffle = False,
+                shuffle = True,
                 num_workers = num_workers,
                 pin_memory = pin_memory,
                 follow_batch = follow_batch,
