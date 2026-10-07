@@ -288,7 +288,7 @@ def get_tri_edges(edge_index_query, pos_query, idx_ligand, ligand_bond_index, li
     for node in torch.arange(pos_query.size(0)):
         num_edges = (row == node).sum()
         index_edge_i = torch.arange(num_edges, dtype=torch.long, ) + acc_num_edges
-        index_edge_i, index_edge_j = torch.meshgrid(index_edge_i, index_edge_i, indexing=None)
+        index_edge_i, index_edge_j = torch.meshgrid(index_edge_i, index_edge_i, indexing="ij")
         index_edge_i, index_edge_j = index_edge_i.flatten(), index_edge_j.flatten()
         index_real_cps_edge_i_list.append(index_edge_i)
         index_real_cps_edge_j_list.append(index_edge_j)

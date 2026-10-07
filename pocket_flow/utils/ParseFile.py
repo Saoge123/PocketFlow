@@ -270,7 +270,7 @@ class Chain(object):
     def get_surf_mask(self):
         if self.has_surf_atom is False:
             self.compute_surface_atoms()
-        return np.array([a.is_surf for a in self.get_heavy_atoms], dtype=np.bool)
+        return np.array([a.is_surf for a in self.get_heavy_atoms], dtype=np.bool_)
 
     def get_res_by_id(self, res_id):
         return self.residues[res_id]
@@ -386,10 +386,10 @@ class Protein(object):
                 if res.idx-res_list[ix-1].idx == 1 and res.chain == res_list[ix-1].chain:
                     bond_idx_between_res = np.array(
                         [[N_term_ix, C_term_list[ix-1]],[C_term_list[ix-1],N_term_ix]],
-                        dtype=np.long
+                        dtype=np.int64
                     )
                     bond_index.append(bond_idx_between_res)
-                    bond_type_between_res = np.array([1,1], dtype=np.long)
+                    bond_type_between_res = np.array([1,1], dtype=np.int64)
                     bond_type.append(bond_type_between_res)
         bond_index = np.concatenate(bond_index, axis=1)
         bond_type = np.concatenate(bond_type)
@@ -421,14 +421,14 @@ class Protein(object):
             atom_dict['is_backbone'].append(a.to_dict['is_backbone'])
             atom_dict['atom_name'].append(a.to_dict['atom_name'])
             atom_dict['atom_to_aa_type'].append(a.to_dict['atom_to_aa_type'])
-        atom_dict['element'] = np.array(atom_dict['element'], dtype=np.long)
+        atom_dict['element'] = np.array(atom_dict['element'], dtype=np.int64)
         atom_dict['pos'] = np.array(atom_dict['pos'], dtype=np.float32)
-        atom_dict['is_backbone'] = np.array(atom_dict['is_backbone'], dtype=np.bool)
+        atom_dict['is_backbone'] = np.array(atom_dict['is_backbone'], dtype=np.bool_)
         #atom_dict['atom_name'] = atom_dict['atom_name']
         if get_surf:
-            atom_dict['surface_mask'] = np.array([a.is_surf for a in self.get_heavy_atoms], dtype=np.bool)#self.get_surf_mask()
+            atom_dict['surface_mask'] = np.array([a.is_surf for a in self.get_heavy_atoms], dtype=np.bool_)#self.get_surf_mask()
         
-        atom_dict['atom_to_aa_type'] = np.array(atom_dict['atom_to_aa_type'], dtype=np.long)
+        atom_dict['atom_to_aa_type'] = np.array(atom_dict['atom_to_aa_type'], dtype=np.int64)
         atom_dict['molecule_name'] = None
         protein_bond_index, protein_bond_type = self.bond_graph
         atom_dict['bond_index'] = protein_bond_index
@@ -441,12 +441,12 @@ class Protein(object):
         backbone_dict = {}
         backbone_dict['element'] = atom_dict['element'][atom_dict['is_backbone']]
         backbone_dict['pos'] = atom_dict['pos'][atom_dict['is_backbone']]
-        backbone_dict['is_backbone'] = np.ones(atom_dict['is_backbone'].sum(), dtype=np.bool)
+        backbone_dict['is_backbone'] = np.ones(atom_dict['is_backbone'].sum(), dtype=np.bool_)
         backbone_dict['atom_name'] = np.array(atom_dict['atom_name'])[atom_dict['is_backbone']].tolist()
         backbone_dict['atom_to_aa_type'] = atom_dict['atom_to_aa_type'][atom_dict['is_backbone']]
         backbone_dict['molecule_name'] = atom_dict['molecule_name']
-        atom_dict['bond_index'] = np.empty([0,2], dtype=np.long)
-        atom_dict['bond_type'] = np.empty(0, dtype=np.long)
+        atom_dict['bond_index'] = np.empty([0,2], dtype=np.int64)
+        atom_dict['bond_type'] = np.empty(0, dtype=np.int64)
         atom_dict['filename'] = self.pdb_file
         return backbone_dict
 
@@ -484,7 +484,7 @@ class Protein(object):
     def get_surf_mask(self):
         if self.has_surf_atom is False:
             self.compute_surface_atoms()
-        return np.array([a.is_surf for a in self.get_heavy_atoms], dtype=np.bool)
+        return np.array([a.is_surf for a in self.get_heavy_atoms], dtype=np.bool_)
         
     @staticmethod
     def empty_dict():
